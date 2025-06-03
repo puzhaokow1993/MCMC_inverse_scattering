@@ -29,8 +29,24 @@ where ![\theta'=x/|x|](https://latex.codecogs.com/png.image?\dpi{110}\theta'=x/|
 
 **Require:** an initial guess ![F^{(0)}](https://latex.codecogs.com/png.image?\dpi{110}F^{(0)}) and a resolution parameter ![J_{(0)}](https://latex.codecogs.com/png.image?\dpi{110}J_{(0)})
 
-1. Set ![{\rm%20status}(0)={\rm%20true}](https://latex.codecogs.com/png.image?\dpi{110}{\rm%20status}(0)={\rm%20true})
-2. Creating an empty sequence ![\{{\rm%20status}(\tau)\}_{\tau=1}^{\infty}](https://latex.codecogs.com/png.image?\dpi{110}\{{\rm%20status}(\tau)\}_{\tau=1}^{\infty})
+1. Set ![{\rm%20status}(0)={\rm%20accept}](https://latex.codecogs.com/png.image?\dpi{110}{\rm%20status}(0)={\rm%20accept})
+2. Creating an empty sequence ![({\rm%20status}(\tau))_{\tau=1}^{\infty}](https://latex.codecogs.com/png.image?\dpi{110}({\rm%20status}(\tau))_{\tau=1}^{\infty})
+3. **for ![\tau=0,1,2,\cdots](https://latex.codecogs.com/png.image?\dpi{110}\tau=0,1,2,\cdots) do**
+4. $~~~~$ Generate ![F(x,y)=\sum_{r,s\in\mathbb{Z}}F_{rs}\chi_{(0,1)\times(0,1)}(2^{J_0}x-r,2^{J_0}y-s)](https://latex.codecogs.com/png.image?\dpi{110}F(x,y)=\sum_{r,s\in\mathbb{Z}}F_{rs}\chi_{(0,1)\times(0,1)}(2^{J_0}x-r,2^{J_0}y-s)) with ![F_{rs}](https://latex.codecogs.com/png.image?\dpi{110}F_{rs}) randomly chosen according to ![\mathcal{N}(0,1)](https://latex.codecogs.com/png.image?\dpi{110}\mathcal{N}(0,1))
+5. $~~~~$ Propose ![F^{(\tau+1)}=\sqrt{(1+\beta^2)}F^{(\tau)}+\beta%20F](https://latex.codecogs.com/png.image?\dpi{110}F^{(\tau+1)}=\sqrt{(1+\beta^2)}F^{(\tau)}+\beta%20F)
+6. $~~~~$ **if ![{\rm%20status}(\tau)={\rm%20accept}](https://latex.codecogs.com/png.image?\dpi{110}{\rm%20status}(\tau)={\rm%20accept}) then**
+7. $~~~~~~~~$ ![\ell_{\rm%20current}=\ell^{(N)}(F^{(\tau)})](https://latex.codecogs.com/png.image?\dpi{110}\ell_{\rm%20current}=\ell^{(N)}(F^{(\tau)})), where ![\ell^{(N)}](https://latex.codecogs.com/png.image?\dpi{110}\ell^{(N)}) is the log-likelihood function given in equation (2.8) of our paper.
+8. $~~~~$ **end if**
+9. $~~~~$ Compute ![u_*=\ell^{(N)}(F^{(\tau+1)})-\ell_{\rm%20current}](https://latex.codecogs.com/png.image?\dpi{110}u_*=\ell^{(N)}(F^{(\tau+1)})-\ell_{\rm%20current})
+10. $~~~~$ Generate a uniform random number ![u\in[0,1]](https://latex.codecogs.com/png.image?\dpi{110}u\in[0,1])
+11. $~~~~$ **if ![log(u)<u_*](https://latex.codecogs.com/png.image?\dpi{110}log(u)<u_*) then**
+12. $~~~~~~~~$ Set ![{\rm%20status}(\tau+1)={\rm%20accept}](https://latex.codecogs.com/png.image?\dpi{110}{\rm%20status}(\tau+1)={\rm%20accept})
+13. $~~~~$ **else**
+14. $~~~~~~~~$ Set ![F^{(\tau+1)}=F^{(\tau)}](https://latex.codecogs.com/png.image?\dpi{110}F^{(\tau+1)}=F^{(\tau)}) and ![{\rm%20status}(\tau+1)={\rm%20reject}](https://latex.codecogs.com/png.image?\dpi{110}{\rm%20status}(\tau+1)={\rm%20reject})
+15. $~~~~$ **end if**
+16. **end for**
+
+**Return:** ![(F^{(\tau)})_{\tau=1}^{\infty}](https://latex.codecogs.com/png.image?\dpi{110}(F^{(\tau)})_{\tau=1}^{\infty}) by removing all entries ![F^{(\tau)}](https://latex.codecogs.com/png.image?\dpi{110}F^{(\tau)}) each corresponds to ![{\rm%20status}(\tau)={\rm%20reject}](https://latex.codecogs.com/png.image?\dpi{110}{\rm%20status}(\tau)={\rm%20reject})
 
 # Results # 
 
