@@ -76,11 +76,39 @@ In order to reconstruct
 
 we choose the wave number ![k=5](https://latex.codecogs.com/png.image?\dpi{110}k=5), noise level ![\sigma=0.1](https://latex.codecogs.com/png.image?\dpi{110}\sigma=0.1), initial guess ![F^{(0)}\equiv0](https://latex.codecogs.com/png.image?\dpi{110}F^{(0)}\equiv0), sample size ![N=560](https://latex.codecogs.com/png.image?\dpi{110}N=560), learning rate ![\beta=0.05](https://latex.codecogs.com/png.image?\dpi{110}\beta=0.05), and resolution parameter ![J_0=1](https://latex.codecogs.com/png.image?\dpi{110}J_0=1). A total of 30000 iterations were carried out, requiring approximately a duration of 18 days and 3 hours (specifically, 1568082 seconds) to compute. 
 
+The progression of the log-likelihood ![\ell_{\rm%20current}](https://latex.codecogs.com/png.image?\dpi{110}\ell_{\rm%20current}) over iterations is shown in figure below. 
+
 <div align="center">
-<img src="MATLAB_MCMC_square/MCMC_convergence_log_likelihood.eps" alt="Our results" width="45%" style="margin-right: 10px;" /> 
+<img src="square_log_likelihood.png" alt="Our results" width="45%" style="margin-right: 10px;" /> 
 </div>
 
+The plot of 'burn-in' sample mean ![\overline{F}_{\rm%20burn}^{(T)}](https://latex.codecogs.com/png.image?\dpi{110}\overline{F}_{\rm%20burn}^{(T)}) and the ground truth ![n^{(\rm%20true)}](https://latex.codecogs.com/png.image?\dpi{110}n^{(\rm%20true)}) on FEM mesh is shown in figure below. 
 
-TBA
+<div align="center">
+<img src="square_plot1_from_top.png" alt="Our results" width="45%" style="margin-right: 10px;" /> <img src="square_true_n_from_top.png" alt="Our results" width="45%" style="margin-right: 10px;" /> 
+</div>
+
+## Result 2 ##
+
+In order to reconstruct 
+<div align="center">
+  
+![n^{(\rm%20true)}=1+\frac{1}{10}\chi_{x<1/2,y<1/2,x+y>-1/4}](https://latex.codecogs.com/png.image?\dpi{110}n^{(\rm%20true)}=1+\frac{1}{10}\chi_{x<1/2,y<1/2,x+y>-1/4}), 
+</div>
+
+we choose the wave number ![k=5](https://latex.codecogs.com/png.image?\dpi{110}k=5), noise level ![\sigma=0.1](https://latex.codecogs.com/png.image?\dpi{110}\sigma=0.1), initial guess ![F^{(0)}\equiv0](https://latex.codecogs.com/png.image?\dpi{110}F^{(0)}\equiv0), sample size ![N=560](https://latex.codecogs.com/png.image?\dpi{110}N=560), learning rate ![\beta=0.05](https://latex.codecogs.com/png.image?\dpi{110}\beta=0.05), and resolution parameter ![J_0=1](https://latex.codecogs.com/png.image?\dpi{110}J_0=1). Based on some experiences in [Result 1](#result-1), this time only a total of 10000 iterations were carried out, requiring approximately a duration of 5 days and 8 hours (specifically, 459934 seconds) to compute. 
+
+The progression of the log-likelihood ![\ell_{\rm%20current}](https://latex.codecogs.com/png.image?\dpi{110}\ell_{\rm%20current}) over iterations is shown in figure below. 
+
+<div align="center">
+<img src="triangle_log_likelihood.png" alt="Our results" width="45%" style="margin-right: 10px;" /> 
+</div>
+
+The plot of 'burn-in' sample mean ![\overline{F}_{\rm%20burn}^{(T)}](https://latex.codecogs.com/png.image?\dpi{110}\overline{F}_{\rm%20burn}^{(T)}) and the ground truth ![n^{(\rm%20true)}](https://latex.codecogs.com/png.image?\dpi{110}n^{(\rm%20true)}) on FEM mesh is shown in figure below. 
+
+<div align="center">
+<img src="triangle_plot1_from_top.png" alt="Our results" width="45%" style="margin-right: 10px;" /> <img src="triangle_true_n_from_top.png" alt="Our results" width="45%" style="margin-right: 10px;" /> 
+</div>
+
 
 [comment]: <> (https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
