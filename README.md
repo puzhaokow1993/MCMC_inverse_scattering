@@ -5,6 +5,8 @@ This repository provides the MATLAB implementation of the MCMC algorithm present
 
 [Takashi Furuya](https://kendb.doshisha.ac.jp/profile/en.77bfc1f47b9eacdc.html), [Pu-Zhao Kow](https://puzhaokow1993.github.io/homepage/) and [Jenn-Nan Wang](http://www.math.ntu.edu.tw/~jnwang/), *Consistency of the Bayes method for the inverse scattering problem with randomly truncated Gaussian priors*, May 14, 2025, [preprint](https://www.math.ntu.edu.tw/~jnwang/pub/resources/random_truncation(0515).pdf)
 
+We will not going to explain all notations here, please refer to our paper for more details. 
+
 In this work, we apply the Bayes approach to study the inverse medium scattering problem. Let ![n\ge0](https://latex.codecogs.com/png.image?\dpi{110}n\ge0) and ![1-n](https://latex.codecogs.com/png.image?\dpi{110}1-n) be a compactly supported function in ![\mathbb{R}^{3}](https://latex.codecogs.com/png.image?\dpi{110}\mathbb{R}^{3}) with ![{\rm%20supp}%20(1-n)\subset%20D](https://latex.codecogs.com/png.image?\dpi{110}{\rm%20supp}%20(1-n)\subset%20D), where ![D](https://latex.codecogs.com/png.image?\dpi{110}D) is an open bounded smooth domain, and having suitable regularity. Let ![u_n%20=u^{\rm%20inc}+u_n^{\rm%20sca}](https://latex.codecogs.com/png.image?\dpi{110}u_n%20=u^{\rm%20inc}+u_n^{\rm%20sca}) satisfy 
 <div align="center">
   
@@ -48,7 +50,32 @@ where ![\theta'=x/|x|](https://latex.codecogs.com/png.image?\dpi{110}\theta'=x/|
 
 **Return:** ![(F^{(\tau)})_{\tau=1}^{\infty}](https://latex.codecogs.com/png.image?\dpi{110}(F^{(\tau)})_{\tau=1}^{\infty}) by removing all entries ![F^{(\tau)}](https://latex.codecogs.com/png.image?\dpi{110}F^{(\tau)}) each corresponds to ![{\rm%20status}(\tau)={\rm%20reject}](https://latex.codecogs.com/png.image?\dpi{110}{\rm%20status}(\tau)={\rm%20reject})
 
+> [!IMPORTANT] 
+> One cannot replace ![log(u)<u_*](https://latex.codecogs.com/png.image?\dpi{110}log(u)<u_*) and the log-likelihood function ![\ell^{(N)}](https://latex.codecogs.com/png.image?\dpi{110}\ell^{(N)}) by ![u<\exp(u_*)](https://latex.codecogs.com/png.image?\dpi{110}u<\exp(u_*)) and the likelihood function due to limited floating point, , respectively, despite they are mathematical equivalent. 
+
+> [!TIP] 
+> The numerical computation can be significantly speeded up by employing the parallel computing, using [MATLAB Parallel Computing Toolbox](https://www.mathworks.com/products/parallel-computing.html). Using `parfor` rather than `for` also speed up the computations. 
+
 # Results # 
+
+The perturbation ![1-n^{(\rm%20true)}](https://latex.codecogs.com/png.image?\dpi{110}1-n^{(\rm%20true)}) is approximated by ![1-\Phi(\overline{F}_{\rm%20burn}^{(T)})](https://latex.codecogs.com/png.image?\dpi{110}1-\Phi(\overline{F}_{\rm%20burn}^{(T)})) for a sufficiently large integer ![T](https://latex.codecogs.com/png.image?\dpi{110}T), where ![\overline{F}_{\rm%20burn}^{(T)}](https://latex.codecogs.com/png.image?\dpi{110}\overline{F}_{\rm%20burn}^{(T)}) denotes the 'burn-in' sample mean, defined as 
+<div align="center">
+  
+![\overline{F}_{\rm%20burn}^{(T)}=\frac{1}{\lfloor%20T/2\rfloor}\sum_{\tau=\lfloor%20T/2\rfloor+1}^{T}F^{(\tau)}](https://latex.codecogs.com/png.image?\dpi{110}\overline{F}_{\rm%20burn}^{(T)}=\frac{1}{\lfloor%20T/2\rfloor}\sum_{\tau=\lfloor%20T/2\rfloor+1}^{T}F^{(\tau)})
+</div>
+
+The calculations were performed on an 8-core workstation, allowing a parallel solution of 8 equations simultaneously. The PDE (used to compute the log-likelihood function) was discretized using the finite element method with a mesh size of at most 0.3. 
+
+## Result 1 ##
+
+In order to reconstruct 
+<div align="center">
+  
+![n^{(\rm%20true)}=1+\frac{1}{10}\chi_{[-1/2,1/2]\times[-1/2,1/2]}](https://latex.codecogs.com/png.image?\dpi{110}n^{(\rm%20true)}=1+\frac{1}{10}\chi_{[-1/2,1/2]\times[-1/2,1/2]}), 
+</div>
+
+we choose the wave number ![k=5](https://latex.codecogs.com/png.image?\dpi{110}k=5), noise level ![\sigma=0.1](https://latex.codecogs.com/png.image?\dpi{110}\sigma=0.1), initial guess ![F^{(0)}\equiv0](https://latex.codecogs.com/png.image?\dpi{110}F^{(0)}\equiv0), sample size ![N=560](https://latex.codecogs.com/png.image?\dpi{110}N=560), learning rate ![\beta=0.05](https://latex.codecogs.com/png.image?\dpi{110}\beta=0.05), and resolution parameter ![J_0=1](https://latex.codecogs.com/png.image?\dpi{110}J_0=1). A total of 30000 iterations were carried out, requiring approximately a duration of 18 days and 3 hours (specifically, 1568082 seconds) to compute. 
+
 
 TBA
 
