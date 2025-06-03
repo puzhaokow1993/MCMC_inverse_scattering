@@ -51,7 +51,7 @@ where ![\theta'=x/|x|](https://latex.codecogs.com/png.image?\dpi{110}\theta'=x/|
 **Return:** ![(F^{(\tau)})_{\tau=1}^{\infty}](https://latex.codecogs.com/png.image?\dpi{110}(F^{(\tau)})_{\tau=1}^{\infty}) by removing all entries ![F^{(\tau)}](https://latex.codecogs.com/png.image?\dpi{110}F^{(\tau)}) each corresponds to ![{\rm%20status}(\tau)={\rm%20reject}](https://latex.codecogs.com/png.image?\dpi{110}{\rm%20status}(\tau)={\rm%20reject})
 
 > [!IMPORTANT] 
-> One cannot replace ![log(u)<u_*](https://latex.codecogs.com/png.image?\dpi{110}log(u)<u_*) and the log-likelihood function ![\ell^{(N)}](https://latex.codecogs.com/png.image?\dpi{110}\ell^{(N)}) by ![u<\exp(u_*)](https://latex.codecogs.com/png.image?\dpi{110}u<\exp(u_*)) and the likelihood function due to limited floating point, , respectively, despite they are mathematical equivalent. 
+> The if condition ![log(u)<u_*](https://latex.codecogs.com/png.image?\dpi{110}log(u)<u_*) and the log-likelihood function ![\ell^{(N)}](https://latex.codecogs.com/png.image?\dpi{110}\ell^{(N)}) cannot be replaced by ![u<\exp(u_*)](https://latex.codecogs.com/png.image?\dpi{110}u<\exp(u_*)) and the likelihood function, respectively, due to limited floating point, despite they are mathematical equivalent. 
 
 > [!TIP] 
 > The numerical computation can be significantly speeded up by employing the parallel computing, using [MATLAB Parallel Computing Toolbox](https://www.mathworks.com/products/parallel-computing.html). Using `parfor` rather than `for` also speed up the computations. 
