@@ -27,7 +27,10 @@ where ![\theta'=x/|x|](https://latex.codecogs.com/png.image?\dpi{110}\theta'=x/|
 
 # Algorithm # 
 
-TBA
+**Require:** an initial guess ![F^{(0)}](https://latex.codecogs.com/png.image?\dpi{110}F^{(0)}) and a resolution parameter ![J_{(0)}](https://latex.codecogs.com/png.image?\dpi{110}J_{(0)})
+
+1. Set ![{\rm%20status}(0)={\rm%20true}](https://latex.codecogs.com/png.image?\dpi{110}{\rm%20status}(0)={\rm%20true})
+2. Creating an empty sequence ![\{{\rm%20status}(\tau)\}_{\tau=1}^{\infty}](https://latex.codecogs.com/png.image?\dpi{110}\{{\rm%20status}(\tau)\}_{\tau=1}^{\infty})
 
 # Results # 
 
